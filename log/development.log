@@ -1,0 +1,374 @@
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ bin/rails:9
+  [1m[35m (1.5ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  ↳ bin/rails:9
+  [1m[35m (1.5ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Migrating to CreateUsers (20181024210427)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20181024210427_create_users.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20181024210427"]]
+  ↳ bin/rails:9
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:9
+Migrating to CreatePins (20181024210438)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE TABLE "pins" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "url" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20181024210438_create_pins.rb:3
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE  INDEX "index_pins_on_user_id" ON "pins" ("user_id")[0m
+  ↳ db/migrate/20181024210438_create_pins.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20181024210438"]]
+  ↳ bin/rails:9
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:9
+Migrating to CreateComments (20181024210456)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE "comments" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "pin_id" integer, "content" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20181024210456_create_comments.rb:3
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE  INDEX "index_comments_on_user_id" ON "comments" ("user_id")[0m
+  ↳ db/migrate/20181024210456_create_comments.rb:3
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "index_comments_on_pin_id" ON "comments" ("pin_id")[0m
+  ↳ db/migrate/20181024210456_create_comments.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20181024210456"]]
+  ↳ bin/rails:9
+  [1m[35m (1.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Create (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2018-10-24 21:12:03.709744"], ["updated_at", "2018-10-24 21:12:03.709744"]]
+  ↳ bin/rails:9
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Migrating to AddIndexToPins (20181024211304)
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ db/migrate/20181024211304_add_index_to_pins.rb:3
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TEMPORARY TABLE "apins" ("id" integer NOT NULL PRIMARY KEY, "user_id" integer DEFAULT NULL, "url" varchar DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20181024211304_add_index_to_pins.rb:3
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "tindex_apins_on_user_id" ON "apins" ("user_id")[0m
+  ↳ db/migrate/20181024211304_add_index_to_pins.rb:3
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "apins" ("id","user_id","url","created_at","updated_at")
+                     SELECT "id","user_id","url","created_at","updated_at" FROM "pins"[0m
+  ↳ db/migrate/20181024211304_add_index_to_pins.rb:3
+  [1m[35m (15.2ms)[0m  [1m[35mDROP TABLE "pins"[0m
+  ↳ db/migrate/20181024211304_add_index_to_pins.rb:3
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "pins" ("id" integer NOT NULL PRIMARY KEY, "url" varchar DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20181024211304_add_index_to_pins.rb:3
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "pins" ("id","url","created_at","updated_at")
+                     SELECT "id","url","created_at","updated_at" FROM "apins"[0m
+  ↳ db/migrate/20181024211304_add_index_to_pins.rb:3
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "apins"[0m
+  ↳ db/migrate/20181024211304_add_index_to_pins.rb:3
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "pins" ADD "user_id" integer[0m
+  ↳ db/migrate/20181024211304_add_index_to_pins.rb:4
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_pins_on_user_id" ON "pins" ("user_id")[0m
+  ↳ db/migrate/20181024211304_add_index_to_pins.rb:4
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20181024211304"]]
+  ↳ bin/rails:9
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:9
+Migrating to AddIndexToComments (20181024211340)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TEMPORARY TABLE "acomments" ("id" integer NOT NULL PRIMARY KEY, "user_id" integer DEFAULT NULL, "pin_id" integer DEFAULT NULL, "content" text DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20181024211340_add_index_to_comments.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "tindex_acomments_on_pin_id" ON "acomments" ("pin_id")[0m
+  ↳ db/migrate/20181024211340_add_index_to_comments.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "tindex_acomments_on_user_id" ON "acomments" ("user_id")[0m
+  ↳ db/migrate/20181024211340_add_index_to_comments.rb:3
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "acomments" ("id","user_id","pin_id","content","created_at","updated_at")
+                     SELECT "id","user_id","pin_id","content","created_at","updated_at" FROM "comments"[0m
+  ↳ db/migrate/20181024211340_add_index_to_comments.rb:3
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE "comments"[0m
+  ↳ db/migrate/20181024211340_add_index_to_comments.rb:3
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "comments" ("id" integer NOT NULL PRIMARY KEY, "pin_id" integer DEFAULT NULL, "content" text DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20181024211340_add_index_to_comments.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_comments_on_pin_id" ON "comments" ("pin_id")[0m
+  ↳ db/migrate/20181024211340_add_index_to_comments.rb:3
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "comments" ("id","pin_id","content","created_at","updated_at")
+                     SELECT "id","pin_id","content","created_at","updated_at" FROM "acomments"[0m
+  ↳ db/migrate/20181024211340_add_index_to_comments.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "acomments"[0m
+  ↳ db/migrate/20181024211340_add_index_to_comments.rb:3
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "comments" ADD "user_id" integer[0m
+  ↳ db/migrate/20181024211340_add_index_to_comments.rb:4
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_comments_on_user_id" ON "comments" ("user_id")[0m
+  ↳ db/migrate/20181024211340_add_index_to_comments.rb:4
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20181024211340"]]
+  ↳ bin/rails:9
+  [1m[35m (1.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:9
+Migrating to AddCommentsToPin (20181024211359)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TEMPORARY TABLE "acomments" ("id" integer NOT NULL PRIMARY KEY, "pin_id" integer DEFAULT NULL, "content" text DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "user_id" integer DEFAULT NULL)[0m
+  ↳ db/migrate/20181024211359_add_comments_to_pin.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "tindex_acomments_on_user_id" ON "acomments" ("user_id")[0m
+  ↳ db/migrate/20181024211359_add_comments_to_pin.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "tindex_acomments_on_pin_id" ON "acomments" ("pin_id")[0m
+  ↳ db/migrate/20181024211359_add_comments_to_pin.rb:3
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "acomments" ("id","pin_id","content","created_at","updated_at","user_id")
+                     SELECT "id","pin_id","content","created_at","updated_at","user_id" FROM "comments"[0m
+  ↳ db/migrate/20181024211359_add_comments_to_pin.rb:3
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE "comments"[0m
+  ↳ db/migrate/20181024211359_add_comments_to_pin.rb:3
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "comments" ("id" integer NOT NULL PRIMARY KEY, "content" text DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "user_id" integer DEFAULT NULL)[0m
+  ↳ db/migrate/20181024211359_add_comments_to_pin.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_comments_on_user_id" ON "comments" ("user_id")[0m
+  ↳ db/migrate/20181024211359_add_comments_to_pin.rb:3
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "comments" ("id","content","created_at","updated_at","user_id")
+                     SELECT "id","content","created_at","updated_at","user_id" FROM "acomments"[0m
+  ↳ db/migrate/20181024211359_add_comments_to_pin.rb:3
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "acomments"[0m
+  ↳ db/migrate/20181024211359_add_comments_to_pin.rb:3
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "comments" ADD "pin_id" integer[0m
+  ↳ db/migrate/20181024211359_add_comments_to_pin.rb:4
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_comments_on_pin_id" ON "comments" ("pin_id")[0m
+  ↳ db/migrate/20181024211359_add_comments_to_pin.rb:4
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20181024211359"]]
+  ↳ bin/rails:9
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:5
+  [1m[36mUser Create (19.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Melvin"], ["created_at", "2018-10-24 21:25:16.454468"], ["updated_at", "2018-10-24 21:25:16.454468"]]
+  ↳ db/seeds.rb:5
+  [1m[35m (2.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:5
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:5
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Charley"], ["created_at", "2018-10-24 21:25:16.479828"], ["updated_at", "2018-10-24 21:25:16.479828"]]
+  ↳ db/seeds.rb:5
+  [1m[35m (1.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:5
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:5
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Lezlie"], ["created_at", "2018-10-24 21:25:16.484348"], ["updated_at", "2018-10-24 21:25:16.484348"]]
+  ↳ db/seeds.rb:5
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:5
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:5
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Isaiah"], ["created_at", "2018-10-24 21:25:16.490051"], ["updated_at", "2018-10-24 21:25:16.490051"]]
+  ↳ db/seeds.rb:5
+  [1m[35m (1.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:5
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:5
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Keva"], ["created_at", "2018-10-24 21:25:16.494692"], ["updated_at", "2018-10-24 21:25:16.494692"]]
+  ↳ db/seeds.rb:5
+  [1m[35m (1.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:5
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:5
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Makeda"], ["created_at", "2018-10-24 21:25:16.498917"], ["updated_at", "2018-10-24 21:25:16.498917"]]
+  ↳ db/seeds.rb:5
+  [1m[35m (1.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:5
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:5
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Buck"], ["created_at", "2018-10-24 21:25:16.502957"], ["updated_at", "2018-10-24 21:25:16.502957"]]
+  ↳ db/seeds.rb:5
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:5
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:5
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Raymonde"], ["created_at", "2018-10-24 21:25:16.506277"], ["updated_at", "2018-10-24 21:25:16.506277"]]
+  ↳ db/seeds.rb:5
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:5
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:5
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Thomas"], ["created_at", "2018-10-24 21:25:16.509967"], ["updated_at", "2018-10-24 21:25:16.509967"]]
+  ↳ db/seeds.rb:5
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:5
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:5
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Sergio"], ["created_at", "2018-10-24 21:25:16.513495"], ["updated_at", "2018-10-24 21:25:16.513495"]]
+  ↳ db/seeds.rb:5
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:5
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:11
+  [1m[36mPin Create (0.4ms)[0m  [1m[32mINSERT INTO "pins" ("url", "created_at", "updated_at", "user_id") VALUES (?, ?, ?, ?)[0m  [["url", "http://pinterest.com/luana"], ["created_at", "2018-10-24 21:25:16.643852"], ["updated_at", "2018-10-24 21:25:16.643852"], ["user_id", 10]]
+  ↳ db/seeds.rb:11
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:11
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:11
+  [1m[36mPin Create (0.3ms)[0m  [1m[32mINSERT INTO "pins" ("url", "created_at", "updated_at", "user_id") VALUES (?, ?, ?, ?)[0m  [["url", "http://pinterest.com/kattie.bosco"], ["created_at", "2018-10-24 21:25:16.648045"], ["updated_at", "2018-10-24 21:25:16.648045"], ["user_id", 10]]
+  ↳ db/seeds.rb:11
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:11
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:11
+  [1m[36mPin Create (0.4ms)[0m  [1m[32mINSERT INTO "pins" ("url", "created_at", "updated_at", "user_id") VALUES (?, ?, ?, ?)[0m  [["url", "http://pinterest.com/chieko.hoeger"], ["created_at", "2018-10-24 21:25:16.651396"], ["updated_at", "2018-10-24 21:25:16.651396"], ["user_id", 10]]
+  ↳ db/seeds.rb:11
+  [1m[35m (1.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:11
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:11
+  [1m[36mPin Create (0.3ms)[0m  [1m[32mINSERT INTO "pins" ("url", "created_at", "updated_at", "user_id") VALUES (?, ?, ?, ?)[0m  [["url", "http://pinterest.com/sau"], ["created_at", "2018-10-24 21:25:16.657279"], ["updated_at", "2018-10-24 21:25:16.657279"], ["user_id", 10]]
+  ↳ db/seeds.rb:11
+  [1m[35m (1.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:11
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:11
+  [1m[36mPin Create (0.3ms)[0m  [1m[32mINSERT INTO "pins" ("url", "created_at", "updated_at", "user_id") VALUES (?, ?, ?, ?)[0m  [["url", "http://pinterest.com/adam"], ["created_at", "2018-10-24 21:25:16.661480"], ["updated_at", "2018-10-24 21:25:16.661480"], ["user_id", 10]]
+  ↳ db/seeds.rb:11
+  [1m[35m (1.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:11
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:11
+  [1m[36mPin Create (0.4ms)[0m  [1m[32mINSERT INTO "pins" ("url", "created_at", "updated_at", "user_id") VALUES (?, ?, ?, ?)[0m  [["url", "http://pinterest.com/tashia"], ["created_at", "2018-10-24 21:25:16.666217"], ["updated_at", "2018-10-24 21:25:16.666217"], ["user_id", 10]]
+  ↳ db/seeds.rb:11
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:11
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:11
+  [1m[36mPin Create (0.3ms)[0m  [1m[32mINSERT INTO "pins" ("url", "created_at", "updated_at", "user_id") VALUES (?, ?, ?, ?)[0m  [["url", "http://pinterest.com/lashay.blanda"], ["created_at", "2018-10-24 21:25:16.670057"], ["updated_at", "2018-10-24 21:25:16.670057"], ["user_id", 10]]
+  ↳ db/seeds.rb:11
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:11
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:11
+  [1m[36mPin Create (0.3ms)[0m  [1m[32mINSERT INTO "pins" ("url", "created_at", "updated_at", "user_id") VALUES (?, ?, ?, ?)[0m  [["url", "http://pinterest.com/hilary_ritchie"], ["created_at", "2018-10-24 21:25:16.673387"], ["updated_at", "2018-10-24 21:25:16.673387"], ["user_id", 10]]
+  ↳ db/seeds.rb:11
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:11
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:11
+  [1m[36mPin Create (0.3ms)[0m  [1m[32mINSERT INTO "pins" ("url", "created_at", "updated_at", "user_id") VALUES (?, ?, ?, ?)[0m  [["url", "http://pinterest.com/pedro_jacobson"], ["created_at", "2018-10-24 21:25:16.676820"], ["updated_at", "2018-10-24 21:25:16.676820"], ["user_id", 10]]
+  ↳ db/seeds.rb:11
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:11
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:11
+  [1m[36mPin Create (0.3ms)[0m  [1m[32mINSERT INTO "pins" ("url", "created_at", "updated_at", "user_id") VALUES (?, ?, ?, ?)[0m  [["url", "http://pinterest.com/azzie"], ["created_at", "2018-10-24 21:25:16.680272"], ["updated_at", "2018-10-24 21:25:16.680272"], ["user_id", 10]]
+  ↳ db/seeds.rb:11
+  [1m[35m (1.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:11
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:17
+  [1m[36mComment Create (0.6ms)[0m  [1m[32mINSERT INTO "comments" ("content", "created_at", "updated_at", "user_id", "pin_id") VALUES (?, ?, ?, ?, ?)[0m  [["content", "Intelligentsia muggle magic farm-to-table fashion axe freegan."], ["created_at", "2018-10-24 21:25:16.697939"], ["updated_at", "2018-10-24 21:25:16.697939"], ["user_id", 10], ["pin_id", 10]]
+  ↳ db/seeds.rb:17
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:17
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:17
+  [1m[36mComment Create (0.4ms)[0m  [1m[32mINSERT INTO "comments" ("content", "created_at", "updated_at", "user_id", "pin_id") VALUES (?, ?, ?, ?, ?)[0m  [["content", "Quinoa loko roof meggings meh helvetica bespoke direct trade."], ["created_at", "2018-10-24 21:25:16.703756"], ["updated_at", "2018-10-24 21:25:16.703756"], ["user_id", 10], ["pin_id", 10]]
+  ↳ db/seeds.rb:17
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:17
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:17
+  [1m[36mComment Create (0.3ms)[0m  [1m[32mINSERT INTO "comments" ("content", "created_at", "updated_at", "user_id", "pin_id") VALUES (?, ?, ?, ?, ?)[0m  [["content", "Stumptown blue bottle vegan semiotics."], ["created_at", "2018-10-24 21:25:16.707608"], ["updated_at", "2018-10-24 21:25:16.707608"], ["user_id", 10], ["pin_id", 10]]
+  ↳ db/seeds.rb:17
+  [1m[35m (1.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:17
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:17
+  [1m[36mComment Create (0.4ms)[0m  [1m[32mINSERT INTO "comments" ("content", "created_at", "updated_at", "user_id", "pin_id") VALUES (?, ?, ?, ?, ?)[0m  [["content", "Leggings polaroid put a bird on it craft beer."], ["created_at", "2018-10-24 21:25:16.712176"], ["updated_at", "2018-10-24 21:25:16.712176"], ["user_id", 10], ["pin_id", 10]]
+  ↳ db/seeds.rb:17
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:17
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:17
+  [1m[36mComment Create (0.3ms)[0m  [1m[32mINSERT INTO "comments" ("content", "created_at", "updated_at", "user_id", "pin_id") VALUES (?, ?, ?, ?, ?)[0m  [["content", "Photo booth church-key sriracha waistcoat."], ["created_at", "2018-10-24 21:25:16.716711"], ["updated_at", "2018-10-24 21:25:16.716711"], ["user_id", 10], ["pin_id", 10]]
+  ↳ db/seeds.rb:17
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:17
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:17
+  [1m[36mComment Create (0.3ms)[0m  [1m[32mINSERT INTO "comments" ("content", "created_at", "updated_at", "user_id", "pin_id") VALUES (?, ?, ?, ?, ?)[0m  [["content", "Bicycle rights trust fund stumptown direct trade brunch vinegar squid."], ["created_at", "2018-10-24 21:25:16.720605"], ["updated_at", "2018-10-24 21:25:16.720605"], ["user_id", 10], ["pin_id", 10]]
+  ↳ db/seeds.rb:17
+  [1m[35m (1.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:17
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:17
+  [1m[36mComment Create (0.3ms)[0m  [1m[32mINSERT INTO "comments" ("content", "created_at", "updated_at", "user_id", "pin_id") VALUES (?, ?, ?, ?, ?)[0m  [["content", "Trust fund pork belly craft beer etsy waistcoat everyday."], ["created_at", "2018-10-24 21:25:16.724781"], ["updated_at", "2018-10-24 21:25:16.724781"], ["user_id", 10], ["pin_id", 10]]
+  ↳ db/seeds.rb:17
+  [1m[35m (1.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:17
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:17
+  [1m[36mComment Create (0.3ms)[0m  [1m[32mINSERT INTO "comments" ("content", "created_at", "updated_at", "user_id", "pin_id") VALUES (?, ?, ?, ?, ?)[0m  [["content", "Yuccie farm-to-table pinterest waistcoat sustainable."], ["created_at", "2018-10-24 21:25:16.729019"], ["updated_at", "2018-10-24 21:25:16.729019"], ["user_id", 10], ["pin_id", 10]]
+  ↳ db/seeds.rb:17
+  [1m[35m (1.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:17
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:17
+  [1m[36mComment Create (0.3ms)[0m  [1m[32mINSERT INTO "comments" ("content", "created_at", "updated_at", "user_id", "pin_id") VALUES (?, ?, ?, ?, ?)[0m  [["content", "Chia mlkshk skateboard art party franzen vegan microdosing."], ["created_at", "2018-10-24 21:25:16.733147"], ["updated_at", "2018-10-24 21:25:16.733147"], ["user_id", 10], ["pin_id", 10]]
+  ↳ db/seeds.rb:17
+  [1m[35m (8.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:17
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:17
+  [1m[36mComment Create (0.3ms)[0m  [1m[32mINSERT INTO "comments" ("content", "created_at", "updated_at", "user_id", "pin_id") VALUES (?, ?, ?, ?, ?)[0m  [["content", "Selvage poutine bitters aesthetic forage synth +1."], ["created_at", "2018-10-24 21:25:16.744140"], ["updated_at", "2018-10-24 21:25:16.744140"], ["user_id", 10], ["pin_id", 10]]
+  ↳ db/seeds.rb:17
+  [1m[35m (1.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:17
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:17
+  [1m[36mComment Create (0.3ms)[0m  [1m[32mINSERT INTO "comments" ("content", "created_at", "updated_at", "user_id", "pin_id") VALUES (?, ?, ?, ?, ?)[0m  [["content", "Taxidermy 8-bit loko organic waistcoat craft beer freegan kombucha."], ["created_at", "2018-10-24 21:25:16.747742"], ["updated_at", "2018-10-24 21:25:16.747742"], ["user_id", 10], ["pin_id", 10]]
+  ↳ db/seeds.rb:17
+  [1m[35m (1.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:17
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:17
+  [1m[36mComment Create (0.3ms)[0m  [1m[32mINSERT INTO "comments" ("content", "created_at", "updated_at", "user_id", "pin_id") VALUES (?, ?, ?, ?, ?)[0m  [["content", "Chia chambray listicle whatever asymmetrical cliche literally."], ["created_at", "2018-10-24 21:25:16.751646"], ["updated_at", "2018-10-24 21:25:16.751646"], ["user_id", 10], ["pin_id", 10]]
+  ↳ db/seeds.rb:17
+  [1m[35m (2.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:17
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:17
+  [1m[36mComment Create (0.3ms)[0m  [1m[32mINSERT INTO "comments" ("content", "created_at", "updated_at", "user_id", "pin_id") VALUES (?, ?, ?, ?, ?)[0m  [["content", "Hashtag messenger bag authentic waistcoat."], ["created_at", "2018-10-24 21:25:16.756104"], ["updated_at", "2018-10-24 21:25:16.756104"], ["user_id", 10], ["pin_id", 10]]
+  ↳ db/seeds.rb:17
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:17
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:17
+  [1m[36mComment Create (0.3ms)[0m  [1m[32mINSERT INTO "comments" ("content", "created_at", "updated_at", "user_id", "pin_id") VALUES (?, ?, ?, ?, ?)[0m  [["content", "Gluten-free thundercats vinyl mustache butcher."], ["created_at", "2018-10-24 21:25:16.759415"], ["updated_at", "2018-10-24 21:25:16.759415"], ["user_id", 10], ["pin_id", 10]]
+  ↳ db/seeds.rb:17
+  [1m[35m (1.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:17
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:17
+  [1m[36mComment Create (0.3ms)[0m  [1m[32mINSERT INTO "comments" ("content", "created_at", "updated_at", "user_id", "pin_id") VALUES (?, ?, ?, ?, ?)[0m  [["content", "Cliche 90's twee meh single-origin coffee diy."], ["created_at", "2018-10-24 21:25:16.762968"], ["updated_at", "2018-10-24 21:25:16.762968"], ["user_id", 10], ["pin_id", 10]]
+  ↳ db/seeds.rb:17
+  [1m[35m (1.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:17
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mPin Load (0.2ms)[0m  [1m[34mSELECT  "pins".* FROM "pins" WHERE "pins"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mUser Load (16.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Update (0.7ms)[0m  [1m[33mUPDATE "users" SET "name" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["name", "Mathieu"], ["updated_at", "2018-10-24 21:31:19.420777"], ["id", 1]]
+  [1m[35m (2.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mComment Load (8.8ms)[0m  [1m[34mSELECT  "comments".* FROM "comments" LIMIT ?[0m  [["LIMIT", 11]]
